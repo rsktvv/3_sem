@@ -5,31 +5,42 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QBrush>
+#include <QImage>
+
+using namespace std;
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
 
 
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    if(n%2==0)
-    {
-        x=event->x();
-        y=event->y();
-        n++;
-    }
+
+    if(event->modifiers() & Qt::ControlModifier)
+            Ctrl_click=true;
     else
-    {
-        x_1=event->x();
-        y_1=event->y();
-        n++;
-    }
+        Ctrl_click=false;
+
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)
 {
-      QPainter painter(this);
-      QPen pens;
-      pens.setStyle(Qt::DashLine);
-      painter.setPen(pens);
-      if(n==2)
-          painter.drawLine(x,y,x_1,y_1);
+    QPainter painter(this);
+    QRect window = contentsRect();
+    QImage img("D:\proga\3_sem\QT_creator\0.lab\flower.png");
+    if(!Ctrl_click)
+        painter.drawImage(100,100,img);
+    else
+        painter.drawImage(QRect(window.width()/2-img.width()/2,window.height()/2-img.height()/2, img.width()*2, img.height()*2), img);
 }
+

@@ -2,10 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QList>
+#include <QPoint>
+#include <QMouseEvent>
 #include <QPainter>
-#include <QString>
 
-
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow; }
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
@@ -13,14 +17,13 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-    void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
+    void paintEvent(QPaintEvent *event);
+    ~MainWindow();
 
 private:
-    bool Ctrl_click, click;
+    Ui::MainWindow *ui;
+    QList <QPoint*> mass;
 
 };
 #endif // MAINWINDOW_H
