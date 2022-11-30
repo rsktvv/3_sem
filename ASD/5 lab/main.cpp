@@ -10,6 +10,8 @@ int main()
 	for (int i = 0; i < n; i++)
 		std::cin >> mass[i];
 
+
+
 	for (int i = 1; i < n; i++)
 	{
 		for (int j = i+1; j < n; j--)
@@ -17,12 +19,11 @@ int main()
 			while (j > 1 && mass[i] > mass[j])
 			{
 				std::swap(mass[i], mass[i + 1]);
-				
 			}
 		}
-		
-		
 	}
+
+
 
 	for (int i = 0; i < n; i++)
 	{
