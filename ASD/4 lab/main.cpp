@@ -1,29 +1,28 @@
 #include<iostream>
-//РІСЃС‚Р°РІРєР°РјРё
+//методом причесывания
 int main()
 {
-	
 	int n,x,m,a;
-	int key, j;
 	
+
 	std::cin >> n;
 	int* mass = new int[n];
-
 	for (int i = 0; i < n; i++)
 		std::cin >> mass[i];
+	
+	double fact = 1.2473309;
+	int step = n - 1;
+	
 
-	for (int i = 1; i < n;i++)
+	while (step >= 1)
 	{
-		 key = mass[i];
-		 j = i - 1;
-		while (j >= 0 &&  key < mass[j])
+		for (int i = 0; i + step < n; i++)
 		{
-			mass[j + 1] = mass[j];
-			j =j- 1;
+			if (mass[i] > mass[i + step])
+				std::swap(mass[i], mass[i + step]);
+			step /= fact;
 		}
-		mass[j + 1] = key;
 	}
-
 
 	for (int i = 0; i < n; i++)
 	{
